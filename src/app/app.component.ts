@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-rest-jdev';
+
+  usuario = {login: '', senha: ''};
+
+  public login() {
+    console.log('Teste login : ' + this.usuario.login + ' senha: ' + this.usuario.senha);
+  }
+
 }
