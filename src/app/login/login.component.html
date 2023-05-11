@@ -1,0 +1,39 @@
+<form>
+
+  <div class="form-group">
+    <h3>Login do Sistema</h3>
+  </div>
+
+  <div class="form-group">
+    <label for="login">Email</label>
+    <input type="email"
+           class="form-control"
+           id="login"
+           name="login"
+           aria-describedby="emailHelp"
+           #email="ngModel"
+           [(ngModel)]="usuario.login"
+           required="true">
+    <div *ngIf="email.invalid" class="alert alert-danger">
+      Login deve ser informado
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="senha">Password</label>
+    <input type="password"
+           class="form-control"
+           id="senha"
+           name="senha"
+           #senha="ngModel"
+           [(ngModel)]="usuario.senha"
+           required="true">
+    <div *ngIf="senha.invalid" class="alert alert-danger">
+      Senha deve ser informada
+    </div>
+  </div>
+
+  <button type="button" [disabled]="email.invalid || senha.invalid" (click)="login()" class="btn btn-primary">Acessar
+  </button>
+
+</form>
