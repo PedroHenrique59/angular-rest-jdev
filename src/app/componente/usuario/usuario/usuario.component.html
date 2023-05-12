@@ -1,12 +1,16 @@
-<table>
-  <thead>
-  <th>Id</th>
-  <th>Nome</th>
-  <th>Cpf</th>
+<table class="table">
+  <thead class="thread-dark">
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Nome</th>
+    <th scope="col">Cpf</th>
+  </tr>
   </thead>
-
   <tbody>
-
+  <tr *ngFor="let student of students ">
+    <td>{{student.id}}</td>
+    <td>{{student.nome}}</td>
+    <td>{{student.cpf}}</td>
+  </tr>
   </tbody>
-
 </table>
