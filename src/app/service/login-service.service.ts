@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginServiceService {
+export class LoginService {
 
   constructor(private http: HttpClient, private router: Router) {
   }
@@ -15,7 +15,7 @@ export class LoginServiceService {
     return this.http.post(AppConstants.baseLogin, JSON.stringify(usuario)).subscribe(data => {
         /*Retorno HTTP*/
 
-        let token = (JSON.parse(JSON.stringify(data)).Authorization.split(' ')[1]);
+        const token = (JSON.parse(JSON.stringify(data)).Authorization.split(' ')[1]);
 
         localStorage.setItem('token', token);
 
