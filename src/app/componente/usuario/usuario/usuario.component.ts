@@ -10,17 +10,24 @@ import {User} from '../../../model/user';
 })
 export class UsuarioComponent implements OnInit {
 
-  students: Observable<User[]>;
+  students: User[];
 
   constructor(private userService: UsuarioService) {
   }
 
   ngOnInit() {
-
     this.userService.getStudentList().subscribe(retorno => {
       this.students = retorno;
     });
+  }
 
+  deleteUsuario(id: number) {
+    this.userService.deletarUsuario(id).subscribe(retorno => {
+      console.log('Retorno do delete: ' + retorno);
+      this.userService.getStudentList().subscribe(students => {
+        this.students = students;
+      });
+    });
   }
 
 }
