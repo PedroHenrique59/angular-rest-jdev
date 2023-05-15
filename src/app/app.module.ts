@@ -9,6 +9,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {HttpInterceptorModule} from './service/header-interceptor.service';
 import {UsuarioComponent} from './componente/usuario/usuario/usuario.component';
+import {UsuarioAddComponent} from './componente/usuario/usuario-add/usuario-add.component';
 
 export const appRouters: Routes = [
   {
@@ -22,6 +23,12 @@ export const appRouters: Routes = [
   },
   {
     path: 'usuarioList', component: UsuarioComponent
+  },
+  {
+    path: 'usuarioAdd', component: UsuarioAddComponent
+  },
+  {
+    path: 'usuarioAdd/:id', component: UsuarioAddComponent
   }
 ];
 
@@ -32,7 +39,8 @@ export const routes: ModuleWithProviders = RouterModule.forRoot(appRouters);
     AppComponent,
     HomeComponent,
     LoginComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    UsuarioAddComponent
   ],
   imports: [
     BrowserModule,
