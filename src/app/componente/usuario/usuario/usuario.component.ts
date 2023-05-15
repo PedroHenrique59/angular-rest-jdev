@@ -12,6 +12,8 @@ export class UsuarioComponent implements OnInit {
 
   students: User[];
 
+  nome: string;
+
   constructor(private userService: UsuarioService) {
   }
 
@@ -27,6 +29,12 @@ export class UsuarioComponent implements OnInit {
       this.userService.getStudentList().subscribe(students => {
         this.students = students;
       });
+    });
+  }
+
+  consultarUsuarioPorNome() {
+    this.userService.getUsuarioPorNome(this.nome).subscribe(retorno => {
+      this.students = retorno;
     });
   }
 
