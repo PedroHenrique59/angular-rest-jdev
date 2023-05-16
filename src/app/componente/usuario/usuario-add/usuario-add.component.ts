@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {User} from '../../../model/user';
+import {UsuarioService} from '../../../service/usuario-service.service';
 
 @Component({
   selector: 'app-usuario-add',
@@ -8,14 +10,30 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class UsuarioAddComponent implements OnInit {
 
-  constructor(private routeActive: ActivatedRoute) {
+  usuarioModel: User;
+
+  constructor(private routeActive: ActivatedRoute, private usuarioService: UsuarioService) {
+    this.usuarioModel = new User();
   }
 
   ngOnInit() {
     const id = this.routeActive.snapshot.paramMap.get('id');
     if (id != null) {
-      console.log('Valor sendo editado: ' + id);
+      this.usuarioService.getUsuarioPorId(id).subscribe(retorno => {
+        this.usuarioModel = retorno;
+      });
     }
+  }
+
+  limpar() {
+    this.usuarioModel = new User();
+  }
+
+  salvar() {
+    this.usuarioService.salvar(this.usuarioModel).subscribe(retorno => {
+      this.usuarioModel = retorno;
+      alert('Usuario salvo com sucesso!');
+    });
   }
 
 }
