@@ -32,4 +32,8 @@ export class UsuarioService {
     return this.http.post<User>(AppConstants.baseUrl, usuario);
   }
 
+  atualizar(usuario: User): Observable<User> {
+    return this.http.put<User>(AppConstants.baseUrl, usuario);
+  }
+
 }

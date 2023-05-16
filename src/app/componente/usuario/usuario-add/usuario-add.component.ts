@@ -30,10 +30,16 @@ export class UsuarioAddComponent implements OnInit {
   }
 
   salvar() {
-    this.usuarioService.salvar(this.usuarioModel).subscribe(retorno => {
-      this.usuarioModel = retorno;
-      alert('Usuario salvo com sucesso!');
-    });
+    if (this.usuarioModel.id != null && this.usuarioModel.id.toString().trim() != null) {
+      this.usuarioService.atualizar(this.usuarioModel).subscribe(retorno => {
+        this.usuarioModel = retorno;
+        alert('Usuario atualizado com sucesso!');
+      });
+    } else {
+      this.usuarioService.salvar(this.usuarioModel).subscribe(retorno => {
+        this.usuarioModel = retorno;
+        alert('Usuario salvo com sucesso!');
+      });
+    }
   }
-
 }
