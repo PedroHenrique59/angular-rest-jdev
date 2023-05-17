@@ -7,7 +7,6 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'angular-rest-jdev';
 
   constructor(private router: Router) {
   }
@@ -18,9 +17,17 @@ export class AppComponent implements OnInit {
     }
   }
 
-  public sair() {
+  sair() {
     localStorage.clear();
     this.router.navigate(['login']);
+  }
+
+  esconderBarra(): boolean {
+    if (localStorage.getItem('token') != null && localStorage.getItem('token').toString().trim() != null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }
