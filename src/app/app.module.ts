@@ -4,9 +4,9 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
-import {HomeComponent} from './home/home.component';
+import {HomeComponent} from './componente/home/home.component';
 import {RouterModule, Routes} from '@angular/router';
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from './componente/login/login.component';
 import {HttpInterceptorModule} from './service/header-interceptor.service';
 import {UsuarioComponent} from './componente/usuario/usuario/usuario.component';
 import {UsuarioAddComponent} from './componente/usuario/usuario-add/usuario-add.component';
