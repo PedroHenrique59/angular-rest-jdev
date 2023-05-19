@@ -1,3 +1,5 @@
+import {Telefone} from './telefone';
+
 export class User {
 
   id?: number;
@@ -5,5 +7,5 @@ export class User {
   nome: string;
   cpf: string;
   senha: string;
-
+  telefones: Array<Telefone>;
 }

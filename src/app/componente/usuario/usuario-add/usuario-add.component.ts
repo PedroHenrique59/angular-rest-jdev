@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {User} from '../../../model/user';
 import {UsuarioService} from '../../../service/usuario-service.service';
+import {dashCaseToCamelCase} from '@angular/compiler/src/util';
+import {Telefone} from '../../../model/telefone';
 
 @Component({
   selector: 'app-usuario-add',
@@ -11,6 +13,8 @@ import {UsuarioService} from '../../../service/usuario-service.service';
 export class UsuarioAddComponent implements OnInit {
 
   usuarioModel: User;
+
+  telefone: Telefone = new Telefone();
 
   constructor(private routeActive: ActivatedRoute, private usuarioService: UsuarioService) {
     this.usuarioModel = new User();
@@ -25,8 +29,31 @@ export class UsuarioAddComponent implements OnInit {
     }
   }
 
+  addTelefone() {
+    if (this.usuarioModel.telefones === undefined) {
+      this.usuarioModel.telefones = new Array<Telefone>();
+    }
+    this.usuarioModel.telefones.push(this.telefone);
+    this.telefone = new Telefone();
+  }
+
+  excluirTelefone(id: number, index: any) {
+    if (id === null) {
+      this.usuarioModel.telefones.splice(index, 1);
+      return;
+    }
+
+    if (id != null && confirm('Deseja remover?')) {
+      this.usuarioService.excluirTelefone(id).subscribe(retorno => {
+        this.usuarioModel.telefones.splice(index, 1);
+        alert('Telefone excluído!');
+      });
+    }
+  }
+
   limpar() {
     this.usuarioModel = new User();
+    this.telefone = new Telefone();
   }
 
   salvar() {
