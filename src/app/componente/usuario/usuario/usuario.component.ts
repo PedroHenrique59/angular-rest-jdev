@@ -24,12 +24,14 @@ export class UsuarioComponent implements OnInit {
   }
 
   deleteUsuario(id: number) {
-    this.userService.deletarUsuario(id).subscribe(retorno => {
-      console.log('Retorno do delete: ' + retorno);
-      this.userService.getStudentList().subscribe(students => {
-        this.students = students;
+    if (confirm('Deseja mesmo excluir esse registro?')) {
+      this.userService.deletarUsuario(id).subscribe(retorno => {
+        console.log('Retorno do delete: ' + retorno);
+        this.userService.getStudentList().subscribe(students => {
+          this.students = students;
+        });
       });
-    });
+    }
   }
 
   consultarUsuarioPorNome() {
