@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {User} from '../../../model/user';
 import {UsuarioService} from '../../../service/usuario-service.service';
-import {dashCaseToCamelCase} from '@angular/compiler/src/util';
 import {Telefone} from '../../../model/telefone';
 
 @Component({
@@ -35,6 +34,10 @@ export class UsuarioAddComponent implements OnInit {
     }
     this.usuarioModel.telefones.push(this.telefone);
     this.telefone = new Telefone();
+  }
+
+  printar() {
+    alert('Valor do campo ' + this.telefone.numero);
   }
 
   excluirTelefone(id: number, index: any) {
