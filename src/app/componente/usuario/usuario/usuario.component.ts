@@ -11,15 +11,16 @@ import {User} from '../../../model/user';
 export class UsuarioComponent implements OnInit {
 
   students: User[];
-
   nome: string;
+  total: number;
 
   constructor(private userService: UsuarioService) {
   }
 
   ngOnInit() {
     this.userService.getStudentList().subscribe(retorno => {
-      this.students = retorno;
+      this.students = retorno.content;
+      this.total = retorno.totalElements;
     });
   }
 
@@ -40,4 +41,10 @@ export class UsuarioComponent implements OnInit {
     });
   }
 
+  carregarPagina(pagina) {
+    this.userService.getStudentListPage(pagina - 1).subscribe(retorno => {
+      this.students = retorno.content;
+      this.total = retorno.totalElements;
+    });
+  }
 }

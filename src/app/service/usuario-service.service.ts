@@ -12,8 +12,12 @@ export class UsuarioService {
   constructor(private http: HttpClient) {
   }
 
-  getStudentList(): Observable<User[]> {
-    return this.http.get<User[]>(AppConstants.baseUrl);
+  getStudentList(): Observable<any> {
+    return this.http.get<any>(AppConstants.baseUrl);
+  }
+
+  getStudentListPage(pagina): Observable<any> {
+    return this.http.get<any>(AppConstants.baseUrl + 'page/' + pagina);
   }
 
   getUsuarioPorId(id: string): Observable<User> {

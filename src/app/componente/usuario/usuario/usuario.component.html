@@ -24,7 +24,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let student of students | paginate: { itemsPerPage: 2, currentPage: p }">
+  <tr *ngFor="let student of students | paginate: { itemsPerPage: 2, currentPage: p, totalItems : total}">
     <td>{{student.id}}</td>
     <td>{{student.nome}}</td>
     <td>{{student.cpf}}</td>
@@ -41,5 +41,6 @@
 </table>
 
 <div class="text-center">
-  <pagination-controls (pageChange)="p = $event" previousLabel="Voltar" nextLabel="Próximo" responsive="true"></pagination-controls>
+  <pagination-controls (pageChange)="carregarPagina(p = $event)" previousLabel="Voltar" nextLabel="Próximo"
+                       responsive="true"></pagination-controls>
 </div>
