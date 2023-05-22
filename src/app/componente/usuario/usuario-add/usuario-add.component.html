@@ -24,7 +24,7 @@
     <div class="form-group col-sm-3 col-md-2 col-lg-2">
       <label for="cpf">Cpf</label>
       <span style="color: red; font-size: 23px" *ngIf="inputCpf.invalid">*</span>
-      <input type="text" class="form-control" [(ngModel)]="usuarioModel.cpf" #inputCpf="ngModel" id="cpf"
+      <input type="text" mask="000.000.000-00" class="form-control" [(ngModel)]="usuarioModel.cpf" #inputCpf="ngModel" id="cpf"
              required="true" name="cpf"
              autocomplete="false">
     </div>
@@ -55,7 +55,7 @@
     <div class="card card-body" style="padding-left: 1px">
       <div class="form-row">
         <div class="form-group col-md-3">
-          <input type="text" placeholder="Telefone" id="numero" name="numero" [(ngModel)]="telefone.numero" class="form-control">
+          <input type="text" mask="(00) 0 0000-0000" placeholder="Telefone" id="numero" name="numero" [(ngModel)]="telefone.numero" class="form-control">
         </div>
         <div class="form-group col-md-2">
           <button class="btn btn-primary" (click)="addTelefone()">Adicionar</button>
@@ -68,7 +68,7 @@
     <tbody>
     <tr *ngFor="let fone of usuarioModel.telefones; let index = index">
       <td>{{fone.id}}</td>
-      <td>{{fone.numero}}</td>
+      <td>{{fone.numero | mask:'(00) 0 0000-0000'}}</td>
       <td>
         <button class="btn btn-danger" (click)="excluirTelefone(fone.id, index)">Excluir</button>
       </td>
