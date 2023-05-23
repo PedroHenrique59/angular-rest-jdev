@@ -24,8 +24,12 @@ export class UsuarioService {
     return this.http.get<User>(AppConstants.baseUrl + id);
   }
 
-  getUsuarioPorNome(nome: string): Observable<User[]> {
-    return this.http.get<User[]>(AppConstants.baseUrl + 'usuarioPorNome/' + nome);
+  getUsuarioPorNome(nome: string): Observable<any> {
+    return this.http.get<any>(AppConstants.baseUrl + 'usuarioPorNome/' + nome);
+  }
+
+  getUsuarioPorNomePage(nome: string, pagina: number): Observable<any> {
+    return this.http.get<any>(AppConstants.baseUrl + 'usuarioPorNome/' + nome + '/page/' + pagina);
   }
 
   deletarUsuario(id: number): Observable<any> {

@@ -10,7 +10,7 @@ import {User} from '../../../model/user';
 })
 export class UsuarioComponent implements OnInit {
 
-  students: User[];
+  students: Array<User>;
   nome: string;
   total: number;
 
@@ -24,27 +24,39 @@ export class UsuarioComponent implements OnInit {
     });
   }
 
-  deleteUsuario(id: number) {
+  deleteUsuario(id: number, index: number) {
     if (confirm('Deseja mesmo excluir esse registro?')) {
       this.userService.deletarUsuario(id).subscribe(retorno => {
-        console.log('Retorno do delete: ' + retorno);
-        this.userService.getStudentList().subscribe(students => {
-          this.students = students;
-        });
+        this.students.splice(index, 1);
       });
     }
   }
 
   consultarUsuarioPorNome() {
-    this.userService.getUsuarioPorNome(this.nome).subscribe(retorno => {
-      this.students = retorno;
-    });
+    if (this.nome === '') {
+      this.userService.getStudentList().subscribe(retorno => {
+        this.students = retorno.content;
+        this.total = retorno.totalElements;
+      });
+    } else {
+      this.userService.getUsuarioPorNome(this.nome).subscribe(retorno => {
+        this.students = retorno.content;
+        this.total = retorno.totalElements;
+      });
+    }
   }
 
   carregarPagina(pagina) {
-    this.userService.getStudentListPage(pagina - 1).subscribe(retorno => {
-      this.students = retorno.content;
-      this.total = retorno.totalElements;
-    });
+    if (this.nome !== '') {
+      this.userService.getUsuarioPorNomePage(this.nome, (pagina - 1)).subscribe(retorno => {
+        this.students = retorno.content;
+        this.total = retorno.totalElements;
+      });
+    } else {
+      this.userService.getStudentListPage(pagina - 1).subscribe(retorno => {
+        this.students = retorno.content;
+        this.total = retorno.totalElements;
+      });
+    }
   }
 }
