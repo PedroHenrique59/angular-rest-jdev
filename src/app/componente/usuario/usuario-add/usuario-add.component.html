@@ -40,6 +40,21 @@
         </div>
       </div>
     </div>
+    <div class="form-group col-sm-3 col-md-2 col-lg-2">
+      <label for="profissao">Profissao</label>
+      <span style="color: red; font-size: 23px" *ngIf="selectProfissao.invalid"> * </span>
+      <select [(ngModel)]="usuarioModel.profissao.id" id="profissao" name="profissao" #selectProfissao="ngModel"
+              class="form-control" required="true">
+        <option [ngValue]="p.id" *ngFor="let p of profissoes">{{p.descricao}}</option>
+      </select>
+    </div>
+    <div class="form-group col-sm-3 col-md-2 col-lg-2">
+      <label for="salario">Salário</label>
+      <span style="color: red; font-size: 23px" *ngIf="inputSalario.invalid"> * </span>
+      <input [(ngModel)]="usuarioModel.salario" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+             id="salario" name="salario"
+             class="form-control" required="true" #inputSalario="ngModel">
+    </div>
   </div>
 
   <div class="form-row">

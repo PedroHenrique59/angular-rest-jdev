@@ -4,6 +4,7 @@ import {User} from '../../../model/user';
 import {UsuarioService} from '../../../service/usuario-service.service';
 import {Telefone} from '../../../model/telefone';
 import {NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import {Profissao} from '../../../model/profissao';
 
 @Injectable()
 export class FormatDateAdapter extends NgbDateAdapter<string> {
@@ -74,6 +75,8 @@ export class UsuarioAddComponent implements OnInit {
 
   telefone: Telefone = new Telefone();
 
+  profissoes: Array<Profissao>;
+
   constructor(private routeActive: ActivatedRoute, private usuarioService: UsuarioService) {
     this.usuarioModel = new User();
   }
@@ -85,6 +88,9 @@ export class UsuarioAddComponent implements OnInit {
         this.usuarioModel = retorno;
       });
     }
+    this.usuarioService.getProfissaoList().subscribe(retorno => {
+      this.profissoes = retorno;
+    });
   }
 
   addTelefone() {
@@ -93,10 +99,6 @@ export class UsuarioAddComponent implements OnInit {
     }
     this.usuarioModel.telefones.push(this.telefone);
     this.telefone = new Telefone();
-  }
-
-  printar() {
-    alert('Valor do campo ' + this.telefone.numero);
   }
 
   excluirTelefone(id: number, index: any) {

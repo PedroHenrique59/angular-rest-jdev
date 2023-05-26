@@ -48,6 +48,10 @@ export class UsuarioService {
     return this.http.delete(AppConstants.baseUrl + 'excluirTelefone/' + id, {responseType: 'text'});
   }
 
+  getProfissaoList(): Observable<any> {
+    return this.http.get<any>(AppConstants.baseUrlPath + 'profissao/');
+  }
+
   usuarioAutenticado() {
     if (localStorage.getItem('token') != null && localStorage.getItem('token').toString().trim() != null) {
       return true;
