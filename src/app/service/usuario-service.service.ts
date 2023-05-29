@@ -52,6 +52,12 @@ export class UsuarioService {
     return this.http.get<any>(AppConstants.baseUrlPath + 'profissao/');
   }
 
+  downloadPdfRelatorio() {
+    return this.http.get(AppConstants.baseUrl + 'relatorio', {responseType: 'text'}).subscribe(retorno => {
+      document.querySelector('iframe').src = retorno;
+    });
+  }
+
   usuarioAutenticado() {
     if (localStorage.getItem('token') != null && localStorage.getItem('token').toString().trim() != null) {
       return true;
