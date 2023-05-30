@@ -1,0 +1,59 @@
+<h3 style="padding: 10px">Relatório de Usuario</h3>
+
+<form style="padding: 10px" #formRelatorio="ngForm">
+
+  <div class="form-row">
+    <div class="form-group col-sm-3 col-md-2 col-lg-2">
+      <label for="dataInicio">Data Nascimento Inicio:</label>
+      <span style="color: red; font-size: 23px"> * </span>
+      <div class="input-group">
+        <input id="dataInicio" name="dataInicio" type="text" class="form-control" placeholder="dd/mm/yyyy"
+               ngbDatepicker #dataInicio="ngbDatepicker" [(ngModel)]="usuarioReport.dataInicio" required="true">
+        <div class="input-group-append">
+          <button class="btn btn-primary" (click)="dataInicio.toggle()" type="button"></button>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-sm-3 col-md-2 col-lg-2">
+      <label for="dataFim">Data Nascimento Fim:</label>
+      <span style="color: red; font-size: 23px"> * </span>
+      <div class="input-group">
+        <input id="dataFim" name="dataFim" type="text" class="form-control" placeholder="dd/mm/yyyy"
+               ngbDatepicker #dataFim="ngbDatepicker" [(ngModel)]="usuarioReport.dataFim" required="true">
+        <div class="input-group-append">
+          <button class="btn btn-primary" (click)="dataFim.toggle()" type="button"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-sm-6 col-md-6 col-lg-6">
+
+      <button class="btn btn-primary" style="margin-left: 10px" (click)="imprimeRelatorio()" data-toggle="modal"
+              data-target="#myModal"
+              [disabled]="formRelatorio.invalid">
+        Gerar Relatório
+      </button>
+      <button class="btn btn-danger" style="margin-left: 10px" [routerLink]="['/usuarioList']"
+              routerLinkActive="router-link-active">Voltar
+      </button>
+    </div>
+  </div>
+
+</form>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="min-width: 90%; min-height: 90%; height: 90%">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <iframe id="framePdf" width="100%" height="500" allowtransparency="true"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

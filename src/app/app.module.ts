@@ -15,6 +15,7 @@ import {NgxMaskModule, IConfig} from 'ngx-mask';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgxCurrencyModule} from 'ngx-currency';
+import {UsuarioReportComponent} from './componente/usuario/usuario-report/usuario-report.component';
 
 export const appRouters: Routes = [
   {
@@ -34,6 +35,9 @@ export const appRouters: Routes = [
   },
   {
     path: 'usuarioAdd/:id', component: UsuarioAddComponent, canActivate: [GuardiaoGuard]
+  },
+  {
+    path: 'usuarioReport', component: UsuarioReportComponent, canActivate: [GuardiaoGuard]
   }
 ];
 
@@ -47,7 +51,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     HomeComponent,
     LoginComponent,
     UsuarioComponent,
-    UsuarioAddComponent
+    UsuarioAddComponent,
+    UsuarioReportComponent
   ],
   imports: [
     BrowserModule,
