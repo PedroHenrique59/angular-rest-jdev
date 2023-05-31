@@ -65,6 +65,11 @@ export class UsuarioService {
     });
   }
 
+  carregarGrafico(): Observable<any> {
+    return this.http.get(AppConstants.baseUrl + 'grafico');
+  }
+
+
   usuarioAutenticado() {
     if (localStorage.getItem('token') != null && localStorage.getItem('token').toString().trim() != null) {
       return true;
