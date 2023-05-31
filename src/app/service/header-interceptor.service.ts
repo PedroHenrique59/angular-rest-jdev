@@ -42,7 +42,11 @@ export class HeaderInterceptorService implements HttpInterceptor {
       console.error(error.error);
       errorMessage = 'Error: ' + error.error.error;
     } else {
-      errorMessage = 'Código: ' + error.error.code + '\n Mensagem: ' + error.error.error;
+      if (error.status === 403) {
+        errorMessage = 'Acesso negado. Token expirado!';
+      } else {
+        errorMessage = 'Código: ' + error.error.code + '\n Mensagem: ' + error.error.error;
+      }
     }
     window.alert(errorMessage);
     return throwError(errorMessage);
